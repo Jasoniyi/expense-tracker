@@ -1,0 +1,13 @@
+@import "./variables";
+@import "./navigation";
+@import "./menu-body";
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $body-bck;
+}
+
+.container {
+  display: flex;
+}

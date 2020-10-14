@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Navigation from "./components/Navigation";
 import PageRenderer from "./components/pageRenderer";
+import FixedMenu from "./components/additionalComponents/fixedMenu";
 
 import {
   BrowserRouter as Router,
@@ -10,21 +11,29 @@ import {
   Redirect,
 } from "react-router-dom";
 
+import { GlobalProvider } from "./context/GlobalContext";
+
 function App() {
   return (
-    <Router>
-      <div className="container">
-        <div className="navigation">
-          <Navigation />
+    <GlobalProvider>
+      <Router>
+        <div className="fixed-menu">
+          <FixedMenu />
         </div>
-        <div className="menu-display">
-          <Switch>
-            <Route path="/:page" component={PageRenderer} />
-            <Route path="/" render={() => <Redirect to="/home" />} />
-          </Switch>
+        <div className="container-wrapper">
+          <div className="navigation">
+            <Navigation />
+          </div>
+          <div className="menu-display">
+            <Switch>
+              <Route path="/:page" component={PageRenderer} />
+              <Route path="/" render={() => <Redirect to="/dashboard" />} />
+            </Switch>
+          </div>
         </div>
-      </div>
-    </Router>
+        <div className="footer">footer</div>
+      </Router>
+    </GlobalProvider>
   );
 }
 
